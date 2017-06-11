@@ -1,7 +1,5 @@
 package com.vo;
 
-import java.util.Date;
-
 /**
  *
  * @author Giovanni
@@ -9,10 +7,10 @@ import java.util.Date;
 public class Tratamento {
 
     private int id;
-    private Date dataInicial;
-    private Date dataFinal;
+    private String dataInicial;
+    private String dataFinal;
 
-    public Tratamento(int id, Date dataInicial, Date dataFinal) {
+    public Tratamento(int id, String dataInicial, String dataFinal) {
         this.id = id;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
@@ -26,19 +24,19 @@ public class Tratamento {
         this.id = id;
     }
 
-    public Date getDataInicial() {
+    public String getDataInicial() {
         return dataInicial;
     }
 
-    public void setDataInicial(Date dataInicial) {
+    public void setDataInicial(String dataInicial) {
         this.dataInicial = dataInicial;
     }
 
-    public Date getDataFinal() {
+    public String getDataFinal() {
         return dataFinal;
     }
 
-    public void setDataFinal(Date dataFinal) {
+    public void setDataFinal(String dataFinal) {
         this.dataFinal = dataFinal;
     }
 
