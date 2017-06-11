@@ -1,5 +1,8 @@
 package com.clinicavet;
 
+import com.dao.AnimalDAO;
+import com.vo.Animal;
+
 /**
  *
  * @author Giovanni
@@ -7,6 +10,6 @@ package com.clinicavet;
 public class ClinicaVet {
 
     public static void main(String[] args) {
-     
+        new AnimalDAO().create(new Animal(0, "teste", 2, 2));
     }
 }
