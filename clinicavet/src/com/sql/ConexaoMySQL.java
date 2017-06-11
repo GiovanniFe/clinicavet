@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 //Início da classe de conexão//
-public class LoadDriver {
+public class ConexaoMySQL {
 
     private String status;
     private String serverName = "localhost";

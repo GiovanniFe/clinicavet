@@ -1,6 +1,6 @@
 package com.clinicavet;
 
-import com.sql.LoadDriver;
+import com.sql.ConexaoMySQL;
 
 /**
  *
@@ -9,7 +9,7 @@ import com.sql.LoadDriver;
 public class ClinicaVet {
 
     public static void main(String[] args) {
-        new LoadDriver().getConexaoMySQL();
+        new ConexaoMySQL().getConexaoMySQL();
     }
 
 }
