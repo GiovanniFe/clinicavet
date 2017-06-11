@@ -1,7 +1,5 @@
 package com.vo;
 
-import java.util.Date;
-
 /**
  *
  * @author Giovanni
