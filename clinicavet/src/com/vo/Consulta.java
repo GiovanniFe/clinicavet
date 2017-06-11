@@ -6,17 +6,17 @@ import java.util.Date;
  *
  * @author Giovanni
  */
-public class ConsultaVO {
+public class Consulta {
 
-    private Date dat_con;
+    private Date data;
     private String historico;
 
-    public Date getDat_con() {
-        return dat_con;
+    public Date getData() {
+        return data;
     }
 
-    public void setDat_con(Date dat_con) {
-        this.dat_con = dat_con;
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public String getHistorico() {
@@ -26,4 +26,6 @@ public class ConsultaVO {
     public void setHistorico(String historico) {
         this.historico = historico;
     }
+
+    
 }
