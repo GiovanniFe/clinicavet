@@ -46,7 +46,7 @@ public class ConexaoMySQL {
         return this.getConexaoMySQL();
     }
 
-    public void executeQuery(String query) {
+    public void executeQuery(String query, String... parameters) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement preparedStmt = conexao.getConexaoMySQL().prepareStatement(query);
