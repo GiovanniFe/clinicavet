@@ -9,22 +9,23 @@ import java.util.List;
  */
 public class AnimalDAO {
 
-    public void createAnimal(String nome, int idade, int sexo) {
-        Animal animal = new Animal(nome, idade, sexo);
+    public void create(String nome, int idade, int sexo) {
+        
     }
 
-    public void deleteAnimal(Animal animal) {
-
-    }
-
-    public List<Animal> getAllAnimals() {
+    public void delete(Animal animal) {
 
     }
 
-    public Animal getAnimal(int id) {
+    public List<Animal> retrieveAll() {
 
     }
 
-    public void updateAnimal(Animal animal) {
+    public Animal retrieve(int id) {
+
+    }
+
+    public void update(Animal animal) {
+    
     }
 }
