@@ -4,7 +4,6 @@ import com.sql.ConexaoMySQL;
 import com.vo.Animal;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
@@ -12,13 +11,11 @@ import java.util.List;
  */
 public class EspecieDAO {
 
-    public void create(String nome, int idade, int sexo) {
+    public void create(String nome) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO animal (nome, idade, sexo) VALUES (?, ?, ?)");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO especie (nome) VALUES (?)");
             stmt.setString(1, nome);
-            stmt.setInt(2, idade);
-            stmt.setInt(3, sexo);
 
             stmt.execute();
             stmt.close();
@@ -39,8 +36,7 @@ public class EspecieDAO {
 //    public Animal retrieve(int id) {
 //
 //    }
-
     public void update(Animal animal) {
-    
+
     }
 }
