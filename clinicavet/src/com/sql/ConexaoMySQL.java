@@ -49,7 +49,7 @@ public class ConexaoMySQL {
     public void executeQuery(String query) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
-            PreparedStatement preparedStmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO animal VALUES (?)");
+            PreparedStatement preparedStmt = conexao.getConexaoMySQL().prepareStatement(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
