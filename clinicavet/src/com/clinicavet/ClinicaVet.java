@@ -1,5 +1,7 @@
 package com.clinicavet;
 
+import com.sql.LoadDriver;
+
 /**
  *
  * @author Giovanni
@@ -7,7 +9,7 @@ package com.clinicavet;
 public class ClinicaVet {
 
     public static void main(String[] args) {
-        
+        new LoadDriver().getConexaoMySQL();
     }
 
 }
