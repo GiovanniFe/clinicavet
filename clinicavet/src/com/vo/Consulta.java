@@ -9,10 +9,10 @@ import java.util.Date;
 public class Consulta {
 
     private int id;
-    private Date data;
+    private String data;
     private String historico;
 
-    public Consulta(int id, Date data, String historico) {
+    public Consulta(int id, String data, String historico) {
         this.id = id;
         this.data = data;
         this.historico = historico;
@@ -26,11 +26,11 @@ public class Consulta {
         this.id = id;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
