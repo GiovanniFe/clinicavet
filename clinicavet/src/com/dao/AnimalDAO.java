@@ -16,19 +16,26 @@ public class AnimalDAO {
     
     public final String NOME_TABELA = "animal";
     
-    public void create(String nome, int idade, int sexo) {
+    public Animal create(Animal animal) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (nome, idade, sexo) VALUES (?, ?, ?)");
-            stmt.setString(1, nome);
-            stmt.setInt(2, idade);
-            stmt.setInt(3, sexo);
+            stmt.setString(1, animal.getNome());
+            stmt.setInt(2, animal.getIdade());
+            stmt.setInt(3, animal.getSexo());
 
             stmt.execute();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) 
+                animal.setId(rs.getInt(1));
+            
+            rs.close();
             stmt.close();
             conexao.FecharConexao();
+            return animal;
         } catch (SQLException e) {
             e.printStackTrace();
+            return animal;
         }
     }
 
