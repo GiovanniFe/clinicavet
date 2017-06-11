@@ -11,19 +11,17 @@ import java.util.List;
  * @author Giovanni
  */
 public class ClienteDAO {
-    //private String nome;
-    //private String endereco;
-    //private String telefone;
-    //private Long cep;
-    //private String email;
-    public void create(String nome, int idade, int sexo) {
+
+    public void create(String nome, String endereco, String telefone, Long cep, String email) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO cliente (nome, endereco, telefone, cep, email)"
-                    + " VALUES (?, ?, ?)");
+                    + " VALUES (?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
-            stmt.setInt(2, idade);
-            stmt.setInt(3, sexo);
+            stmt.setString(2, endereco);
+            stmt.setString(3, telefone);
+            stmt.setLong(4, cep);
+            stmt.setString(5, email);
 
             stmt.execute();
             stmt.close();
@@ -40,12 +38,10 @@ public class ClienteDAO {
 //    public List<Animal> retrieveAll() {
 //
 //    }
-
 //    public Animal retrieve(int id) {
 //
 //    }
-
     public void update(Animal animal) {
-    
+
     }
 }
