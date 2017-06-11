@@ -1,7 +1,6 @@
 package com.dao;
 
 import com.sql.ConexaoMySQL;
-import com.vo.Animal;
 import com.vo.Cliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +38,7 @@ public class ClienteDAO {
     public void delete(Cliente cliente) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("DELETE FROM " + NOME_TABELA + " cliente WHERE id = ?");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("DELETE FROM " + NOME_TABELA + " WHERE id = ?");
             stmt.setInt(1, cliente.getId());
             stmt.execute();
             stmt.close();
