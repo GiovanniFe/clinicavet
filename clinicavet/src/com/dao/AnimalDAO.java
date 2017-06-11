@@ -13,11 +13,13 @@ import java.util.List;
  * @author Giovanni
  */
 public class AnimalDAO {
-
+    
+    public final String NOME_TABELA = "animal";
+    
     public void create(String nome, int idade, int sexo) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO animal (nome, idade, sexo) VALUES (?, ?, ?)");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (nome, idade, sexo) VALUES (?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setInt(2, idade);
             stmt.setInt(3, sexo);
@@ -33,7 +35,7 @@ public class AnimalDAO {
     public void delete(Animal animal) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("DELETE FROM animal WHERE id = ?");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("DELETE FROM " + NOME_TABELA + " WHERE id = ?");
             stmt.setInt(1, animal.getId());
             stmt.execute();
             stmt.close();
@@ -46,7 +48,7 @@ public class AnimalDAO {
     public List<Animal> retrieveAll() {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM animal");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM " + NOME_TABELA);
             ResultSet rs = stmt.executeQuery();
 
             List<Animal> list = new ArrayList<>();
@@ -70,7 +72,7 @@ public class AnimalDAO {
     public Animal retrieve(int id) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM animal WHERE id = ?");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM " + NOME_TABELA + " WHERE id = ?");
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
@@ -94,7 +96,7 @@ public class AnimalDAO {
     public void update(Animal animal) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE animal SET nome = ?, idade = ?, sexo = ? WHERE id = ?");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE " + NOME_TABELA + " SET nome = ?, idade = ?, sexo = ? WHERE id = ?");
             stmt.setString(1, animal.getNome());
             stmt.setInt(2, animal.getIdade());
             stmt.setInt(3, animal.getSexo());
