@@ -17,13 +17,13 @@ public class ClienteDAO {
 
     }
 
-    public List<Animal> retrieveAll() {
+//    public List<Animal> retrieveAll() {
+//
+//    }
 
-    }
-
-    public Animal retrieve(int id) {
-
-    }
+//    public Animal retrieve(int id) {
+//
+//    }
 
     public void update(Animal animal) {
     

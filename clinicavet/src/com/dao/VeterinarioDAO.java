@@ -17,13 +17,13 @@ public class VeterinarioDAO {
 
     }
 
-    public List<Animal> retrieveAll() {
-
-    }
-
-    public Animal retrieve(int id) {
-
-    }
+//    public List<Animal> retrieveAll() {
+//
+//    }
+//
+//    public Animal retrieve(int id) {
+//
+//    }
 
     public void update(Animal animal) {
     

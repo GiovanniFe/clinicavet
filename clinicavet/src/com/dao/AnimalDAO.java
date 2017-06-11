@@ -14,25 +14,15 @@ public class AnimalDAO {
 
     public void create(String nome, int idade, int sexo) {
         ConexaoMySQL conexao = new ConexaoMySQL();
-
         try {
-            // cria um preparedStatement
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("insert into contatos (nome,email,endereco) values (?,?,?)");
-            
-            // preenche os valores
-            stmt.setString(1, "xxx");
-            stmt.setString(2, "contato@xxx.com.br");
-            stmt.setString(3, "R.xxxx 12");
-            
-            // executa
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO animal VALUES (?, ?, ?)");
+            stmt.setString(1, nome);
+            stmt.setInt(2, idade);
+            stmt.setInt(3, sexo);
+
             stmt.execute();
             stmt.close();
-            System.out.println("Gravado!");
-
-            /*************fecha a conexao aqui bb*/
-     
             conexao.FecharConexao();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,15 +32,15 @@ public class AnimalDAO {
 
     }
 
-    public List<Animal> retrieveAll() {
+//    public List<Animal> retrieveAll() {
+//
+//    }
 
-    }
-
-    public Animal retrieve(int id) {
-
-    }
+//    public Animal retrieve(int id) {
+//
+//    }
 
     public void update(Animal animal) {
-    
+
     }
 }
