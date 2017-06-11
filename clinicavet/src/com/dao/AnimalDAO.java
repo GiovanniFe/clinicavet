@@ -63,7 +63,7 @@ public class AnimalDAO {
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -71,6 +71,7 @@ public class AnimalDAO {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM animal WHERE id = ?");
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
             Animal animal = null;
