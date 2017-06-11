@@ -16,7 +16,7 @@ public class ConsultaDAO {
 
     public final String NOME_TABELA = "consulta";
 
-    public void create(Consulta consulta) {
+    public void create(Consulta consulta) { 
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (data, historico) VALUES (?, ?)");
