@@ -15,7 +15,7 @@ public class AnimalDAO {
     public void create(String nome, int idade, int sexo) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO animal VALUES (?, ?, ?)");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO animal (nome, idade, sexo) VALUES (?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setInt(2, idade);
             stmt.setInt(3, sexo);
