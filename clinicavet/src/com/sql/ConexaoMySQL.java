@@ -46,7 +46,7 @@ public class ConexaoMySQL {
         return this.getConexaoMySQL();
     }
 
-    public void executeQuery(String query, String... parameters) {
+    public void insert(String query, String... parameters) {
         ConexaoMySQL conexao = new ConexaoMySQL();
 
         try {
