@@ -8,12 +8,22 @@ import java.util.Date;
  */
 public class Tratamento {
 
+    private int id;
     private Date dataInicial;
     private Date dataFinal;
 
-    public Tratamento(Date dataInicial, Date dataFinal) {
+    public Tratamento(int id, Date dataInicial, Date dataFinal) {
+        this.id = id;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getDataInicial() {

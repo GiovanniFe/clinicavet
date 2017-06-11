@@ -8,12 +8,22 @@ import java.util.Date;
  */
 public class Consulta {
 
+    private int id;
     private Date data;
     private String historico;
 
-    public Consulta(Date data, String historico) {
+    public Consulta(int id, Date data, String historico) {
+        this.id = id;
         this.data = data;
         this.historico = historico;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getData() {
@@ -32,5 +42,4 @@ public class Consulta {
         this.historico = historico;
     }
 
-    
 }

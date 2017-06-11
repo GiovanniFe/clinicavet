@@ -5,15 +5,25 @@ package com.vo;
  * @author Giovanni
  */
 public class Animal {
-
+    
+    private int id;
     private String nome;
     private int idade;
     private int sexo;
 
-    public Animal(String nome, int idade, int sexo) {
+    public Animal(int id, String nome, int idade, int sexo) {
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
