@@ -12,6 +12,14 @@ public class Cliente {
     private Long cep_cli;
     private String email_cli;
 
+    public Cliente(String nome, String endereco, String telefone, Long cep_cli, String email_cli) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.cep_cli = cep_cli;
+        this.email_cli = email_cli;
+    }
+
     public String getNome() {
         return nome;
     }

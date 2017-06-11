@@ -10,7 +10,7 @@ import java.util.List;
 public class AnimalDAO {
 
     public void createAnimal(String nome, String idade, int sexo) {
-
+        Animal animal = new Animal()
     }
 
     public void deleteAnimal(Animal animal) {

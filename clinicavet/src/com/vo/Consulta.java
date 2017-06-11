@@ -11,6 +11,11 @@ public class Consulta {
     private Date data;
     private String historico;
 
+    public Consulta(Date data, String historico) {
+        this.data = data;
+        this.historico = historico;
+    }
+
     public Date getData() {
         return data;
     }

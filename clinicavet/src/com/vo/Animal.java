@@ -10,6 +10,12 @@ public class Animal {
     private int idade;
     private int sexo;
 
+    public Animal(String nome, int idade, int sexo) {
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+    }
+
     public String getNome() {
         return nome;
     }
