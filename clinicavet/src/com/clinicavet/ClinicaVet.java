@@ -1,9 +1,8 @@
 package com.clinicavet;
 
-import com.dao.AnimalDAO;
-import com.vo.Animal;
-import java.util.ArrayList;
-import java.util.List;
+import com.dao.ExameDAO;
+import com.dao.TratamentoDAO;
+import com.dao.VeterinarioDAO;
 
 /**
  *
@@ -12,15 +11,8 @@ import java.util.List;
 public class ClinicaVet {
 
     public static void main(String[] args) {
-        List<Animal> animalList = new ArrayList<Animal>();
-        animalList = new AnimalDAO().retrieveAll();
-        for (Animal a : animalList) {
-            System.out.print(a.getNome() + " ");
-            System.out.print(a.getIdade() + " ");
-            System.out.print(a.getSexo() + " ");
-            System.out.println("   ");
-
-        }
+        new TratamentoDAO().create("2017-06-11", "2017-06-11");
+        new ExameDAO().create("descricao");
+        new VeterinarioDAO().create("giovanni", "Avenida Luiz Cavinatto", "3444-3494");
     }
-
 }

@@ -12,13 +12,13 @@ import java.util.List;
  */
 public class VeterinarioDAO {
 
-    public void create(String nome, int idade, int sexo) {
+    public void create(String nome, String endereco, String telefone) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO animal (nome, idade, sexo) VALUES (?, ?, ?)");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO veterinario (nome, endereco, telefone) VALUES (?, ?, ?)");
             stmt.setString(1, nome);
-            stmt.setInt(2, idade);
-            stmt.setInt(3, sexo);
+            stmt.setString(2, endereco);
+            stmt.setString(3, telefone);
 
             stmt.execute();
             stmt.close();
@@ -39,8 +39,7 @@ public class VeterinarioDAO {
 //    public Animal retrieve(int id) {
 //
 //    }
-
     public void update(Animal animal) {
-    
+
     }
 }
