@@ -24,7 +24,7 @@ public class AnimalDAO {
             stmt.setInt(2, animal.getIdade());
             stmt.setInt(3, animal.getSexo());
 
-            stmt.execute();
+            stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) 
                 animal.setId(rs.getInt(1));
