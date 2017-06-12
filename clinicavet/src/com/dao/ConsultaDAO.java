@@ -16,19 +16,20 @@ public class ConsultaDAO {
 
     public final String NOME_TABELA = "consulta";
 
-    public void create(Consulta consulta) { 
+    public Consulta create(Consulta consulta) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (data, historico) VALUES (?, ?)");
             stmt.setString(1, consulta.getData());
             stmt.setString(2, consulta.getHistorico());
-
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
+            consulta.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return consulta;
     }
 
     public void delete(Consulta consulta) {

@@ -15,19 +15,20 @@ import java.util.List;
 public class ExameDAO {
 
     public final String NOME_TABELA = "exame";
-    
-    public void create(String descricao) {
+
+    public Exame create(Exame exame) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (descricao) VALUES (?)");
-            stmt.setString(1, descricao);
-
+            stmt.setString(1, exame.getDescricao());
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
+            exame.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return exame;
     }
 
     public void delete(Exame exame) {

@@ -15,21 +15,22 @@ import java.util.List;
 public class VeterinarioDAO {
 
     public final String NOME_TABELA = "veterinario";
-    
-    public void create(String nome, String endereco, String telefone) {
+
+    public Veterinario create(Veterinario veterinario) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (nome, endereco, telefone) VALUES (?, ?, ?)");
-            stmt.setString(1, nome);
-            stmt.setString(2, endereco);
-            stmt.setString(3, telefone);
-
+            stmt.setString(1, veterinario.getNome());
+            stmt.setString(2, veterinario.getEndereco());
+            stmt.setString(3, veterinario.getTelefone());
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
+            veterinario.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return veterinario;
     }
 
     public void delete(Veterinario veterinario) {

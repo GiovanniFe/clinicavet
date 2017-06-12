@@ -16,18 +16,19 @@ public class EspecieDAO {
 
     public final String NOME_TABELA = "especie";
 
-    public void create(Especie especie) { 
+    public Especie create(Especie especie) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (nome) VALUES (?)");
             stmt.setString(1, especie.getNome());
-
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
+            especie.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return especie;
     }
 
     public void delete(Especie especie) {

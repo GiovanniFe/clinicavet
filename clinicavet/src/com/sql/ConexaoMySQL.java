@@ -3,6 +3,7 @@ package com.sql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import java.sql.SQLException;
 
@@ -44,5 +45,22 @@ public class ConexaoMySQL {
     public java.sql.Connection ReiniciarConexao() {
         FecharConexao();
         return this.getConexaoMySQL();
+    }
+    
+    public int getMaxId(String tableName) {
+        int id = 0;
+        try {
+            ConexaoMySQL conexao = new ConexaoMySQL();
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT max(id) AS maxId FROM " + tableName);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next())
+                id = rs.getInt("maxId");
+            rs.close();
+            stmt.close();
+            conexao.FecharConexao();    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  
+        return id;
     }
 }
