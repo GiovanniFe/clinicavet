@@ -2,7 +2,6 @@ package com.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 
 import java.sql.SQLException;
 
@@ -11,7 +10,7 @@ public class ConexaoMySQL {
 
     private String status;
     private String serverName = "localhost";
-    private String mydatabase = "giovanni";
+    private String mydatabase = "teste";
     private String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
     private String username = "root";
     private String password = "";
