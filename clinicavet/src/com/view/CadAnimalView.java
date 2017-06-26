@@ -47,6 +47,7 @@ public class CadAnimalView extends Application {
         layout.getChildren().addAll(lblTitle, lblNome, lblIdade, lblSexo, cbSexo, txtNome, txtIdade, btnSalvar);
         scene = new Scene(layout, 385, 130);
         window.setScene(scene);
+        window.setTitle("Cadastro Animal");
         window.show();
     }
 
