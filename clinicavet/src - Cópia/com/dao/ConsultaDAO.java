@@ -1,7 +1,7 @@
 package com.dao;
 
 import com.sql.ConexaoMySQL;
-import com.vo.Especie;
+import com.vo.Consulta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,30 +12,30 @@ import java.util.List;
  *
  * @author Giovanni
  */
-public class EspecieDAO {
+public class ConsultaDAO {
 
-    public final String NOME_TABELA = "especie";
+    public final String NOME_TABELA = "consulta";
 
-    public Especie create(Especie especie) {
+    public void create(Consulta consulta) { 
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (nome) VALUES (?)");
-            stmt.setString(1, especie.getNome());
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (data, historico) VALUES (?, ?)");
+            stmt.setString(1, consulta.getData());
+            stmt.setString(2, consulta.getHistorico());
+
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
-            especie.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return especie;
     }
 
-    public void delete(Especie especie) {
+    public void delete(Consulta consulta) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("DELETE FROM " + NOME_TABELA + " WHERE id = ?");
-            stmt.setInt(1, especie.getId());
+            stmt.setInt(1, consulta.getId());
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
@@ -44,17 +44,18 @@ public class EspecieDAO {
         }
     }
 
-    public List<Especie> retrieveAll() {
+    public List<Consulta> retrieveAll() {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM " + NOME_TABELA);
             ResultSet rs = stmt.executeQuery();
 
-            List<Especie> list = new ArrayList<>();
+            List<Consulta> list = new ArrayList<>();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                list.add(new Especie(id, nome));
+                String data = rs.getString("data");
+                String historico = rs.getString("historico");
+                list.add(new Consulta(id, data, historico));
             }
             rs.close();
             stmt.close();
@@ -66,34 +67,37 @@ public class EspecieDAO {
         }
     }
 
-    public Especie retrieve(int id) {
+    public Consulta retrieve(int id) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM " + NOME_TABELA + " WHERE id = ?");
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
-            Especie especie = null;
+            Consulta consulta = null;
             if (rs.next()) {
-                String nome = rs.getString("nome");
-                especie = new Especie(id, nome);
+                String data = rs.getString("data");
+                String historico = rs.getString("historico");
+                consulta = new Consulta(id, data, historico);
             }
             rs.close();
             stmt.close();
             conexao.FecharConexao();
-            return especie;
+            return consulta;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public void update(Especie especie) {
+    public void update(Consulta consulta) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE " + NOME_TABELA + " SET nome = ? WHERE id = ?");
-            stmt.setString(1, especie.getNome());
-            stmt.setInt(2, especie.getId());
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE " + NOME_TABELA
+                    + " SET data = ?, historico = ? WHERE id = ?");
+            stmt.setString(1, consulta.getData());
+            stmt.setString(2, consulta.getHistorico());
+            stmt.setInt(3, consulta.getId());
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();

@@ -13,26 +13,27 @@ import java.util.List;
  * @author Giovanni
  */
 public class ClienteDAO {
-    
+
     public final String NOME_TABELA = "cliente";
-    
-    public void create(String nome, String endereco, String telefone, Long cep, String email) {
+
+    public Cliente create(Cliente cliente) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (nome, endereco, telefone, cep, email)"
                     + " VALUES (?, ?, ?, ?, ?)");
-            stmt.setString(1, nome);
-            stmt.setString(2, endereco);
-            stmt.setString(3, telefone);
-            stmt.setLong(4, cep);
-            stmt.setString(5, email);
-
-            stmt.execute();
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getEndereco());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setLong(4, cliente.getCep_cli());
+            stmt.setString(5, cliente.getEmail_cli());
+            stmt.executeUpdate();
             stmt.close();
             conexao.FecharConexao();
+            cliente.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return cliente;
     }
 
     public void delete(Cliente cliente) {
@@ -103,8 +104,8 @@ public class ClienteDAO {
     public void update(Cliente cliente) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE " + NOME_TABELA + 
-                    " SET nome = ?, endereco = ?, telefone = ?, cep = ?, email = ? WHERE id = ?");
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE " + NOME_TABELA
+                    + " SET nome = ?, endereco = ?, telefone = ?, cep = ?, email = ? WHERE id = ?");
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEndereco());
             stmt.setString(3, cliente.getEndereco());

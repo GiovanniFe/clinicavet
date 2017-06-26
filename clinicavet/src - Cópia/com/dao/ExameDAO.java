@@ -1,7 +1,7 @@
 package com.dao;
 
 import com.sql.ConexaoMySQL;
-import com.vo.Especie;
+import com.vo.Exame;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,30 +12,29 @@ import java.util.List;
  *
  * @author Giovanni
  */
-public class EspecieDAO {
+public class ExameDAO {
 
-    public final String NOME_TABELA = "especie";
-
-    public Especie create(Especie especie) {
+    public final String NOME_TABELA = "exame";
+    
+    public void create(String descricao) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (nome) VALUES (?)");
-            stmt.setString(1, especie.getNome());
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (descricao) VALUES (?)");
+            stmt.setString(1, descricao);
+
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
-            especie.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return especie;
     }
 
-    public void delete(Especie especie) {
+    public void delete(Exame exame) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("DELETE FROM " + NOME_TABELA + " WHERE id = ?");
-            stmt.setInt(1, especie.getId());
+            stmt.setInt(1, exame.getId());
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
@@ -44,17 +43,17 @@ public class EspecieDAO {
         }
     }
 
-    public List<Especie> retrieveAll() {
+    public List<Exame> retrieveAll() {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM " + NOME_TABELA);
             ResultSet rs = stmt.executeQuery();
 
-            List<Especie> list = new ArrayList<>();
+            List<Exame> list = new ArrayList<>();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                list.add(new Especie(id, nome));
+                String descricao = rs.getString("descricao");
+                list.add(new Exame(id, descricao));
             }
             rs.close();
             stmt.close();
@@ -66,34 +65,35 @@ public class EspecieDAO {
         }
     }
 
-    public Especie retrieve(int id) {
+    public Exame retrieve(int id) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("SELECT * FROM " + NOME_TABELA + " WHERE id = ?");
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
-            Especie especie = null;
+            Exame exame = null;
             if (rs.next()) {
-                String nome = rs.getString("nome");
-                especie = new Especie(id, nome);
+                String descricao = rs.getString("descricao");
+                exame = new Exame(id, descricao);
             }
             rs.close();
             stmt.close();
             conexao.FecharConexao();
-            return especie;
+            return exame;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public void update(Especie especie) {
+    public void update(Exame exame) {
         try {
             ConexaoMySQL conexao = new ConexaoMySQL();
-            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE " + NOME_TABELA + " SET nome = ? WHERE id = ?");
-            stmt.setString(1, especie.getNome());
-            stmt.setInt(2, especie.getId());
+            PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("UPDATE " + NOME_TABELA
+                    + " SET descricao = ? WHERE id = ?");
+            stmt.setString(1, exame.getDescricao());
+            stmt.setInt(2, exame.getId());
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();

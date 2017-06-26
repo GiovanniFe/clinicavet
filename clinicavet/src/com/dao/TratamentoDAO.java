@@ -16,19 +16,20 @@ public class TratamentoDAO {
 
     public final String NOME_TABELA = "tratamento";
     
-    public void create(String dataInicial, String dataFinal) {
+    public Tratamento create(Tratamento tratamento) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
             PreparedStatement stmt = conexao.getConexaoMySQL().prepareStatement("INSERT INTO " + NOME_TABELA + " (dataInicial, dataFinal) VALUES (?, ?)");
-            stmt.setString(1, dataInicial);
-            stmt.setString(2, dataFinal);
-
+            stmt.setString(1, tratamento.getDataInicial());
+            stmt.setString(2, tratamento.getDataFinal());
             stmt.execute();
             stmt.close();
             conexao.FecharConexao();
+            tratamento.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return tratamento;
     }
 
     public void delete(Tratamento tratamento) {

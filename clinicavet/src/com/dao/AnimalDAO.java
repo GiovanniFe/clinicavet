@@ -13,9 +13,9 @@ import java.util.List;
  * @author Giovanni
  */
 public class AnimalDAO {
-    
+
     public final String NOME_TABELA = "animal";
-    
+
     public Animal create(Animal animal) {
         ConexaoMySQL conexao = new ConexaoMySQL();
         try {
@@ -23,16 +23,14 @@ public class AnimalDAO {
             stmt.setString(1, animal.getNome());
             stmt.setInt(2, animal.getIdade());
             stmt.setInt(3, animal.getSexo());
-
             stmt.execute();
-            
             stmt.close();
             conexao.FecharConexao();
-            return animal;
+            animal.setId(conexao.getMaxId(NOME_TABELA));
         } catch (SQLException e) {
             e.printStackTrace();
-            return animal;
         }
+        return animal;
     }
 
     public void delete(Animal animal) {
