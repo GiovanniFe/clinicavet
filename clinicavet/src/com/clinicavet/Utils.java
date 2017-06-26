@@ -56,38 +56,4 @@ public class Utils {
         btn.addEventHandler(MouseEvent.MOUSE_EXITED, e -> btn.getScene().setCursor(Cursor.DEFAULT));
         return btn;
     }
-
-    public static GridPane getGpLayout(int minWidth, int minHeight, int padding, Pos pos, Node... nodes) {
-        GridPane gp = new GridPane();
-        gp.setMinSize(minWidth, minHeight);
-        gp.getChildren().addAll(nodes);
-        gp.setVgap(20);
-        gp.setHgap(20);
-        gp.setPadding(new Insets(padding));
-        gp.setAlignment(pos);
-        return gp;
-    }
-
-    public static List getNodeList(Node... nodes) {
-        List list = new ArrayList();
-        for (Node n : nodes) {
-            list.add(n);
-        }
-        return list;
-    }
-
-    public static void setLabelStyle(int fSize, Label... lbl) {
-        for (Label l : lbl) {
-            l.setFont(new Font(fSize));
-            l.setTextFill(Color.web("#FFFFFF"));
-        }
-    }
-
-    public static void setCbStyle(ChoiceBox... choice) {
-        for (ChoiceBox cb : choice) {
-            cb.setMinHeight(30);
-            cb.setMinWidth(90);
-        }
-    }
-
 }

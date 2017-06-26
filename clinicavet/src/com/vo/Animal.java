@@ -5,7 +5,7 @@ package com.vo;
  * @author Giovanni
  */
 public class Animal {
-    
+
     private int id;
     private String nome;
     private int idade;
